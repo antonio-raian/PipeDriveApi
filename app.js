@@ -17,6 +17,12 @@ const  port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 
+// Import Routes
+const dealsRoutes = require('./routes/dealsRoutes');
+
+// Create the route of deals
+app.use('/deals', dealsRoutes);
+
 //Routes
 app.get('/', (req, res) => {
     res.send('You are on PipeBlingApi')
