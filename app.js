@@ -18,14 +18,17 @@ app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 
 // Import Routes
+const orderRoutes = require('./routes/ordersRoutes');
 const dealsRoutes = require('./routes/dealsRoutes');
 
+// Create the route of orders
+app.use('/orders', orderRoutes);
 // Create the route of deals
 app.use('/deals', dealsRoutes);
 
 //Routes
 app.get('/', (req, res) => {
-    res.send('You are on PipeBlingApi')
+    res.send('We are on PipeBlingApi')
 });
 // Listen to server
 app.listen(port, () => {

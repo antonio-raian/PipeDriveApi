@@ -50,7 +50,7 @@ exports.list = async (req, res) => {
     )
     .then(async (resp) => {
       // On success, Try Create a new Order on Bling with response and show error from create or the data from Pipe Drive
-      res.status(200).send( resp.data );
+      res.status(200).send( await OrdersBlingController.create(resp.data) || resp.data );
     })
     .catch((error) => {
       res.send(error); //Return the error
