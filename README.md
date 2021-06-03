@@ -25,7 +25,7 @@ This route is used to see the deals from Pipe Drive account and to create a orde
 |amount |Quantity of `interval` starting from `start_date`; Default `1`;|
 |field_key |Attribute used to determine which ideal field should be checked for `start_date` in `interval`. The field must be of type `Date`; Default `won_time`; |
 |create_orders |Attribute used to create or not the fetched orders. Default `false`; If `true` the list of deals will be transformed into sales orders in bling; |
-|bling_api |This attribute is required if `create_orders` is `true`; Its value is the same for `apiKey` of the Bling API and will be used to validate the user in the request to create sales order;|
+|bling_key |This attribute is required if `create_orders` is `true`; Its value is the same for `apiKey` of the Bling API and will be used to validate the user in the request to create sales order;|
 
 
 2. **Create** `POST => <ip>:<port>/deals`
