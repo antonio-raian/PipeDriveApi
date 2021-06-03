@@ -1,15 +1,16 @@
 const axios = require("axios");
+const convert = require("xml-js");
 const BlingOrders = require("../models/BlingOrders");
 
 // Bling commons
-const api_key =
-  "b1d0d2c30eda80906906362d60ef973e5a1ab2d0b127137965602098c78382f9294ed7b3";
-const url = `https://bling.com.br/Api/v2/pedido/json?apikey=${api_key}`;
+// const api_key =
+//   "b1d0d2c30eda80906906362d60ef973e5a1ab2d0b127137965602098c78382f9294ed7b3";
 
 // Methods
 // Used Internally to create a Order on Bling with deals from PipeDrive
 exports.create = async (param) => {
   // Get Deals and Totals from parameterized data
+  const api_key = param.bling_api;
   const { deals, totals } = param.data[0];
 
   // Get the current date and format to patterns for XML Bilng Order
@@ -30,8 +31,12 @@ exports.create = async (param) => {
   );
 
   // Request to create order on Bling's Api
-  await axios
-    .post(`${url}&xml=${xml}`, { headers: { "Content-Type": "text/xml" } })
+  // eslint-disable-next-line no-return-await
+  return await axios
+    .post(
+      `https://bling.com.br/Api/v2/pedido/json?apikey=${api_key}&xml=${xml}`,
+      { headers: { "Content-Type": "text/xml" } }
+    )
     .then(async (res) => {
       // Processing the response to filter errors
       const pedidos = res.data.retorno?.pedidos;
@@ -42,7 +47,12 @@ exports.create = async (param) => {
         // Create a colection on database
         const bling = new BlingOrders({
           date: now,
-          itens,
+          itens: itens.map((item) =>
+            convert.xml2js(item, {
+              compact: true,
+              spaces: 2,
+            })
+          ),
           valueTotal: totals.won_values,
           count: totals.count,
         });
