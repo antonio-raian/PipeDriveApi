@@ -55,7 +55,7 @@ This route is used to create the deals on Pipe Drive.
  This route list the datas saved in local database. The informations is from the creation of Order on Bling with the Pipe Drive deal's datas.
  
 | Atributes | Format  | Description |
-|:----------|:----------------|
+|:----------|:----------|:----------------|
 | date | `YYYY-MM-DD` | Attribute responsible for informing the start date of the search for orders in the local database;|
 | amount | | Number of days that will be part of the search; Default `1`;|
 | count | | Attribute used to select orders by number of registered items;|
