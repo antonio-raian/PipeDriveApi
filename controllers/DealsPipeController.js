@@ -17,7 +17,7 @@ exports.create = async (req, res) => {
   const { body, query } = req;
 
   // PipeDrive commons
-  const apiKey = query.pipi_key;
+  const apiKey = query.pipe_key;
   const companyName = query.company_name;
 
   // Choose what go send to create a Deal
@@ -52,7 +52,7 @@ exports.list = async (req, res) => {
   const params = req.query;
 
   // PipeDrive commons
-  const apiKey = params.pipi_key;
+  const apiKey = params.pipe_key;
   const companyName = params.company_name;
 
   // Format the actual Date in patterns to Pipi Drive's Api

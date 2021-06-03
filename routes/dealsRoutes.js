@@ -19,6 +19,14 @@ router.get(
     .withMessage("company_name required")
     .notEmpty()
     .withMessage("company_name not be empty"),
+  query("bling_key").custom((value, { req }) => {
+    if (req.query.create_orders && !value) {
+      throw new Error(
+        'For create Order enter Bling Api Key on "bling_key" attribute'
+      );
+    }
+    return value !== undefined || null;
+  }),
   list
 );
 // The route POST '../deasl/ create fakes datas to pipe drive
@@ -34,13 +42,6 @@ router.post(
     .withMessage("company_name required")
     .notEmpty()
     .withMessage("company_name not be empty"),
-  query("bling_key").custom((value, { req }) => {
-    if (req.query.create_orders && !value) {
-      throw new Error(
-        'For create Order enter Bling Api Key on "bling_key" attribute'
-      );
-    }
-  }),
   create
 );
 
