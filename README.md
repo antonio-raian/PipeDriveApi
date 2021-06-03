@@ -13,7 +13,7 @@ The urls for all the routes is the same name of your module.
 Example: To access the route of create or list of Deals, you use `<ip>:<port>/deals`. To differentiate use only HTTP methods, `GET` to list and `POST` to create.
 
 ### Deals
-**List** `GET => <ip>:<port>/deals`
+1. **List** `GET => <ip>:<port>/deals`
 This route is used to see the deals from Pipe Drive account and to create a order from this datas on Bling.
  
 | Attributes | Description |
@@ -28,18 +28,20 @@ This route is used to see the deals from Pipe Drive account and to create a orde
 |bling_api |This attribute is required if `create_orders` is `true`; Its value is the same for `apiKey` of the Bling API and will be used to validate the user in the request to create sales order;|
 
 
-**Create** `POST => <ip>:<port>/deals`
+2. **Create** `POST => <ip>:<port>/deals`
 This route is used to create the deals on Pipe Drive.
 
-In query we have the attributes:
+* In query we have the attributes:
+
 | Attributes | Description |
 |:----------|:----------------|
 |pipe_key `required`|This query attribute is responsible, together with the `company_name`, for doing the user validation in the Pipe Drive API. The value here should be the same as provided by the Pipe Drive API documentation for the `api_token` field|
 |company_name `required`|In conjunction with the `pipi_key` field is responsible for user validation. This attribute must have the same value as the `companydomain` given in the Pipe Drive api;|
 
-In body we have:
+* In body we have:
 > The body is not required, if not informed, the deal will be created with random data;
 > The below data is the minimum. To full data see the Pipe Drive Api docs;
+
 | Attributes | Description |
 |:----------|:----------------|
 |title|The deal's title;|
@@ -48,7 +50,7 @@ In body we have:
 
 
 ### Orders
-**List** `GET => <ip>:<port>/orders`
+1. **List** `GET => <ip>:<port>/orders`
  
  This route list the datas saved in local database. The informations is from the creation of Order on Bling with the Pipe Drive deal's datas.
  
